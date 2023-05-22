@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Purchase History
+{% endblock %}
+
+
+{% block main %}
+    <main class="container py-5 text-center">
+        <head style="text-align: center">
+            Purchase History
+        </head>
+        <table action="/bought" class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-start">Symbol</th>
+                    <th class="text-end">Shares</th>
+                    <th class="text-end">Price</th>
+                    <th class="text-end">Transacted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for purchase in portfolio %}
+                    <tr>
+                        <td class="text-start">{{ purchase["symbol"] }}</td>
+                        <td class="text-end">{{ purchase["shares"] }}</td>
+                        <td class="text-end">${{ purchase["price"] }}</td>
+                        <td class="text-end">{{ purchase["timestamp"] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}
